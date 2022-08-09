@@ -231,7 +231,8 @@ def getTrainImg(image):
         '2008': ['2008', '2009'],
         '2011': ['2010', '2011', '2012'],
         '2013': ['2013', '2014'],
-        '2016': ['2015', '2016', '2017', '2018', '2019', '2020'],
+        '2016': ['2015', '2016', '2017'],
+        '2019': ['2018','2019','2020','2021','2022','2023']
     }
     nlcd_dict = ee.Dictionary({
         src_year: tgt_year
@@ -239,8 +240,8 @@ def getTrainImg(image):
         for src_year in src_years})
     nlcd_year = nlcd_dict.get(
         ee.Date(image.get('system:time_start')).get('year').format('%d'))
-    nlcd_img = ee.ImageCollection('USGS/NLCD') \
-        .filter(ee.Filter.eq('system:index', ee.String('NLCD').cat(nlcd_year))) \
+    nlcd_img = ee.ImageCollection('USGS/NLCD_RELEASES/2019_REL/NLCD') \
+        .filter(ee.Filter.eq('system:index', nlcd_year)) \
         .first()
 
     # Add the NLCD year as a property to track which year was used

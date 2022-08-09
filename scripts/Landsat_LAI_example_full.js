@@ -38,7 +38,7 @@
  */ 
 
 
-var LAI_version = '0.1.0';
+var LAI_version = '0.1.1';
 
 // Rename Landsat bands
 var renameLandsat = function(image) {
@@ -198,12 +198,13 @@ var getTrainImg = function(image) {
     '2008':'2008','2009':'2008',
     '2010':'2011','2011':'2011','2012':'2011',
     '2013':'2013','2014':'2013',
-    '2015':'2016','2016':'2016','2017':'2016','2018':'2016','2019':'2016','2020':'2016','2021':'2016'};
+    '2015':'2016','2016':'2016','2017':'2016',
+    '2018':'2019','2019':'2019','2020':'2019','2021':'2019','2022':'2019','2023':'2019'};
   nlcd_dict = ee.Dictionary(nlcd_dict);
   var nlcd_year = nlcd_dict.get(year);
     
-  var nlcd = ee.ImageCollection('USGS/NLCD')
-    .filter(ee.Filter.eq('system:index',ee.String('NLCD').cat(nlcd_year)))
+  var nlcd = ee.ImageCollection('USGS/NLCD_RELEASES/2019_REL/NLCD')
+    .filter(ee.Filter.eq('system:index',nlcd_year))
     .first();
   
   var fromList = [11,12,21,22,23,24,31,41,42,43,51,52,71,72,73,74,81,82,90,95];
