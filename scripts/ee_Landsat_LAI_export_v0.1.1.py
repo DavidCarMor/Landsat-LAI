@@ -224,8 +224,10 @@ def getTrainImg(image):
     """
 
     # Get NLCD for corresponding year
+    year_list_2001 = [str(x) for x in range(1984, 2003)]
+
     nlcd_dict = {
-        '2001': ['1997', '1998', '1999', '2000', '2001', '2002'],
+        '2001': year_list_2001,
         '2004': ['2003', '2004', '2005'],
         '2006': ['2006', '2007'],
         '2008': ['2008', '2009'],
